@@ -16,10 +16,14 @@ ring-buffer, compaction (``_compact``), and drop-planning (``_planned_drop``);
 here we make the drop *segment-aware* so text is preserved while stale frames
 are dropped.
 
-Status: SCAFFOLD. The span bookkeeping is real; the segment-aware eviction and
-RoPE position re-anchoring (plan §6 risk #1 — THE main risk) are stubbed and
-currently fall back to the parent's contiguous drop. Fill these in for the
-tracer bullet.
+Status: RESERVED. Phase 1 ships segment-aware eviction + RoPE re-anchoring via a
+*recompute re-anchor* at the generate layer — see
+``mlx_vlm.generate.video.SegmentAwareSession`` (correctness-first: on eviction it
+rebuilds the retained units into a fresh cache so survivors land at contiguous
+positions, verified numerically exact against a fresh prefill). This class stays
+as the seat for the *later* in-place rotary-shift optimization (avoiding the
+rebuild); its span bookkeeping is real and its eviction still defers to the
+parent's contiguous drop, so it remains runnable but is NOT on the Phase-1 path.
 """
 
 from __future__ import annotations
