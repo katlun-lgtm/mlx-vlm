@@ -1,0 +1,328 @@
+{
+  "_meta": {
+    "stream_labels": [
+      "horse",
+      "elephant",
+      "tiger",
+      "lion",
+      "bear"
+    ],
+    "window": 6
+  },
+  "1.5B": {
+    "model": "EZCon/FastVLM-1.5B-mlx",
+    "tag": "1.5B",
+    "load_s": 24.182355165481567,
+    "family": "llava",
+    "geometry": {
+      "layers": 28,
+      "n_kv_heads": 2,
+      "n_heads": 12
+    },
+    "sanity": {
+      "tokens": 256,
+      "answer": "A herd of zebras are grazing in a field, with one zebra in the foreground looking at the camera."
+    },
+    "perframe": {
+      "n_frames": 15,
+      "encode_ms": 74.81525315401646,
+      "lm_ms": 73.31941031421033,
+      "tokens_per_frame": 256.0,
+      "kv_bytes_per_frame": 7340032.0,
+      "kv_total_bytes": 110501888,
+      "frames_per_budget": {
+        "1GB": 146,
+        "8GB": 1170
+      },
+      "per_frame_rows": [
+        {
+          "n_tokens": 256,
+          "encode_ms": 76.425,
+          "lm_ms": 62.032,
+          "kv_bytes": 7741440,
+          "kv_delta": 401408
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.845,
+          "lm_ms": 63.159,
+          "kv_bytes": 15081472,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.933,
+          "lm_ms": 64.686,
+          "kv_bytes": 22421504,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.884,
+          "lm_ms": 66.013,
+          "kv_bytes": 29761536,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.923,
+          "lm_ms": 67.41,
+          "kv_bytes": 37101568,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.54,
+          "lm_ms": 68.969,
+          "kv_bytes": 44441600,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.8,
+          "lm_ms": 70.453,
+          "kv_bytes": 51781632,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.918,
+          "lm_ms": 71.739,
+          "kv_bytes": 59121664,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.91,
+          "lm_ms": 73.474,
+          "kv_bytes": 66461696,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.789,
+          "lm_ms": 74.722,
+          "kv_bytes": 73801728,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.807,
+          "lm_ms": 76.16,
+          "kv_bytes": 81141760,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.707,
+          "lm_ms": 77.845,
+          "kv_bytes": 88481792,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.825,
+          "lm_ms": 79.166,
+          "kv_bytes": 95821824,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.822,
+          "lm_ms": 80.524,
+          "kv_bytes": 103161856,
+          "kv_delta": 7340032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.739,
+          "lm_ms": 81.993,
+          "kv_bytes": 110501888,
+          "kv_delta": 7340032
+        }
+      ]
+    },
+    "bounded": {
+      "window": 6,
+      "answer": "The last three scenes from the video, listed from most recent to least recent, are as follows:\n\n1. **Most Recent Scene**: The image shows a lioness with a cub in a snowy environment. The lioness is standing on a patch of snow, and the cub is lying down, possibly resting or playing. The background is a vast expanse of",
+      "kv_min": 44441600,
+      "kv_max": 44441600,
+      "kv_flat": true,
+      "kv_trace": [
+        7741440,
+        15081472,
+        22421504,
+        29761536,
+        37101568,
+        44441600,
+        44441600,
+        44441600,
+        44441600,
+        44441600,
+        44441600,
+        44441600,
+        44441600,
+        44441600,
+        44441600
+      ]
+    }
+  },
+  "7B": {
+    "model": "JettChenT/FastVLM-7b-bf16",
+    "tag": "7B",
+    "load_s": 75.5506341457367,
+    "family": "llava",
+    "geometry": {
+      "layers": 28,
+      "n_kv_heads": 4,
+      "n_heads": 28
+    },
+    "sanity": {
+      "tokens": 256,
+      "answer": "A herd of zebras are grazing in the grasslands, created by Alibaba Cloud."
+    },
+    "perframe": {
+      "n_frames": 15,
+      "encode_ms": 75.68016666202591,
+      "lm_ms": 309.44512175539364,
+      "tokens_per_frame": 256.0,
+      "kv_bytes_per_frame": 14680064.0,
+      "kv_total_bytes": 221577216,
+      "frames_per_budget": {
+        "1GB": 73,
+        "8GB": 585
+      },
+      "per_frame_rows": [
+        {
+          "n_tokens": 256,
+          "encode_ms": 78.127,
+          "lm_ms": 290.125,
+          "kv_bytes": 16056320,
+          "kv_delta": 1376256
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.639,
+          "lm_ms": 291.414,
+          "kv_bytes": 30736384,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.256,
+          "lm_ms": 294.273,
+          "kv_bytes": 45416448,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.762,
+          "lm_ms": 295.58,
+          "kv_bytes": 60096512,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.93,
+          "lm_ms": 298.285,
+          "kv_bytes": 74776576,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.998,
+          "lm_ms": 302.668,
+          "kv_bytes": 89456640,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.85,
+          "lm_ms": 303.881,
+          "kv_bytes": 104136704,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.816,
+          "lm_ms": 306.544,
+          "kv_bytes": 118816768,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.335,
+          "lm_ms": 309.677,
+          "kv_bytes": 133496832,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.769,
+          "lm_ms": 311.464,
+          "kv_bytes": 148176896,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.786,
+          "lm_ms": 314.531,
+          "kv_bytes": 162856960,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.74,
+          "lm_ms": 316.718,
+          "kv_bytes": 177537024,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.837,
+          "lm_ms": 321.075,
+          "kv_bytes": 192217088,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.923,
+          "lm_ms": 322.327,
+          "kv_bytes": 206897152,
+          "kv_delta": 14680064
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 75.839,
+          "lm_ms": 325.762,
+          "kv_bytes": 221577216,
+          "kv_delta": 14680064
+        }
+      ]
+    },
+    "bounded": {
+      "window": 6,
+      "answer": "The last three scenes depicted in the video, from most recent to least recent, are as follows:\n\n1. **Lioness Drinking Water**: The most recent scene shows a lioness drinking water from a small pond. This scene is characterized by the lioness's focused demeanor as she quenches her thirst, with the surrounding grasslands and the clear blue",
+      "kv_min": 89456640,
+      "kv_max": 89456640,
+      "kv_flat": true,
+      "kv_trace": [
+        16056320,
+        30736384,
+        45416448,
+        60096512,
+        74776576,
+        89456640,
+        89456640,
+        89456640,
+        89456640,
+        89456640,
+        89456640,
+        89456640,
+        89456640,
+        89456640,
+        89456640
+      ]
+    }
+  }
+}
