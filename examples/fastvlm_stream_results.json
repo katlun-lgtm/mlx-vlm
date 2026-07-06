@@ -1,0 +1,304 @@
+{
+  "fastvlm": {
+    "model": "mlx-community/FastVLM-0.5B-bf16",
+    "family": "llava",
+    "sanity": {
+      "tokens": 256,
+      "answer": "A zebra stands in a field with other zebras and wildebeests."
+    },
+    "perframe": {
+      "n_frames": 15,
+      "encode_ms": 74.6143782296433,
+      "lm_ms": 27.543208400647227,
+      "tokens_per_frame": 256.0,
+      "kv_bytes_per_frame": 3145728.0,
+      "kv_total_bytes": 47357952,
+      "frames_per_budget": {
+        "1GB": 341,
+        "8GB": 2730
+      },
+      "per_frame_rows": [
+        {
+          "n_tokens": 256,
+          "encode_ms": 76.578,
+          "lm_ms": 21.872,
+          "kv_bytes": 3317760,
+          "kv_delta": 172032
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.63,
+          "lm_ms": 21.939,
+          "kv_bytes": 6463488,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.586,
+          "lm_ms": 22.704,
+          "kv_bytes": 9609216,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.634,
+          "lm_ms": 23.471,
+          "kv_bytes": 12754944,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.707,
+          "lm_ms": 24.3,
+          "kv_bytes": 15900672,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.549,
+          "lm_ms": 25.134,
+          "kv_bytes": 19046400,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.668,
+          "lm_ms": 25.89,
+          "kv_bytes": 22192128,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.614,
+          "lm_ms": 26.74,
+          "kv_bytes": 25337856,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.605,
+          "lm_ms": 27.524,
+          "kv_bytes": 28483584,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.719,
+          "lm_ms": 28.319,
+          "kv_bytes": 31629312,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.587,
+          "lm_ms": 29.223,
+          "kv_bytes": 34775040,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.623,
+          "lm_ms": 29.872,
+          "kv_bytes": 37920768,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.522,
+          "lm_ms": 30.818,
+          "kv_bytes": 41066496,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.622,
+          "lm_ms": 31.614,
+          "kv_bytes": 44212224,
+          "kv_delta": 3145728
+        },
+        {
+          "n_tokens": 256,
+          "encode_ms": 74.551,
+          "lm_ms": 32.453,
+          "kv_bytes": 47357952,
+          "kv_delta": 3145728
+        }
+      ]
+    },
+    "bounded": {
+      "window": 6,
+      "answer": "The image provided is a still from a video, and it does not contain a sequence of scenes to list. However, based on the content of the image, the last three scenes from the video would be:\n\n1. The first scene would likely show the adult male lion in a more active state, possibly hunting or defending territory, as indicated by its posture and",
+      "kv_min": 19046400,
+      "kv_max": 19046400,
+      "kv_flat": true,
+      "kv_trace": [
+        3317760,
+        6463488,
+        9609216,
+        12754944,
+        15900672,
+        19046400,
+        19046400,
+        19046400,
+        19046400,
+        19046400,
+        19046400,
+        19046400,
+        19046400,
+        19046400,
+        19046400
+      ]
+    }
+  },
+  "idefics3": {
+    "model": "mlx-community/Idefics3-8B-Llama3-8bit",
+    "family": "smolvlm",
+    "sanity": {
+      "tokens": 175,
+      "answer": "In this image we can see zebras and trees. In the background of the image there is sky."
+    },
+    "perframe": {
+      "n_frames": 15,
+      "encode_ms": 72.79166031199006,
+      "lm_ms": 244.30050645381786,
+      "tokens_per_frame": 175.0,
+      "kv_bytes_per_frame": 22937600.0,
+      "kv_total_bytes": 355205120,
+      "frames_per_budget": {
+        "1GB": 46,
+        "8GB": 374
+      },
+      "per_frame_rows": [
+        {
+          "n_tokens": 175,
+          "encode_ms": 74.436,
+          "lm_ms": 229.636,
+          "kv_bytes": 33554432,
+          "kv_delta": 0
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.996,
+          "lm_ms": 232.062,
+          "kv_bytes": 57016320,
+          "kv_delta": 23461888
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 73.063,
+          "lm_ms": 233.75,
+          "kv_bytes": 79953920,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.672,
+          "lm_ms": 235.967,
+          "kv_bytes": 102891520,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.875,
+          "lm_ms": 236.907,
+          "kv_bytes": 125829120,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.449,
+          "lm_ms": 239.148,
+          "kv_bytes": 148766720,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.954,
+          "lm_ms": 240.641,
+          "kv_bytes": 171704320,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.801,
+          "lm_ms": 242.453,
+          "kv_bytes": 194641920,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.641,
+          "lm_ms": 244.223,
+          "kv_bytes": 217579520,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.604,
+          "lm_ms": 245.791,
+          "kv_bytes": 240517120,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.936,
+          "lm_ms": 247.399,
+          "kv_bytes": 263454720,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.894,
+          "lm_ms": 249.677,
+          "kv_bytes": 286392320,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.618,
+          "lm_ms": 251.403,
+          "kv_bytes": 309329920,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 72.784,
+          "lm_ms": 253.376,
+          "kv_bytes": 332267520,
+          "kv_delta": 22937600
+        },
+        {
+          "n_tokens": 175,
+          "encode_ms": 73.001,
+          "lm_ms": 255.171,
+          "kv_bytes": 355205120,
+          "kv_delta": 22937600
+        }
+      ]
+    },
+    "bounded": {
+      "window": 6,
+      "answer": "1. Polar bears\n2. Polar bears\n3. Lion.",
+      "kv_min": 148766720,
+      "kv_max": 148766720,
+      "kv_flat": true,
+      "kv_trace": [
+        33554432,
+        57016320,
+        79953920,
+        102891520,
+        125829120,
+        148766720,
+        148766720,
+        148766720,
+        148766720,
+        148766720,
+        148766720,
+        148766720,
+        148766720,
+        148766720,
+        148766720
+      ]
+    }
+  }
+}

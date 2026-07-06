@@ -86,6 +86,73 @@ def _tokenizer(processor: Any):
     return getattr(processor, "tokenizer", processor)
 
 
+def _is_llava_family(model: nn.Module, processor: Any) -> bool:
+    """True for LLaVA-style image handling (a negative image-token placeholder).
+
+    FastVLM (``model_type='llava_qwen2'``) inserts a SINGLE negative placeholder
+    token (``image_token_index = -200``) into ``input_ids`` that
+    ``get_input_embeddings`` then expands into H*W vision tokens — unlike
+    SmolVLM/Idefics3, where the processor expands the ``<image>`` marker into
+    placeholder tokens up front so ``input_ids`` already matches the vision-token
+    count. The two conventions need different per-frame tensor plumbing (below),
+    but both feed the same ``get_input_embeddings`` -> ``language_model(cache=)``
+    mechanism, so the bounded-KV streaming loop is otherwise identical.
+    """
+    idx = getattr(processor, "image_token_index", None)
+    if isinstance(idx, int) and idx < 0:
+        return True
+    mt = str(getattr(getattr(model, "config", None), "model_type", "")).lower()
+    return mt in ("llava_qwen2", "llava-qwen2")
+
+
+def _build_frame_inputs(
+    model: nn.Module, processor: Any, frame: Any, *, first: bool
+) -> Tuple[mx.array, Optional[mx.array], Dict[str, Any]]:
+    """Build one frame's ``(input_ids, pixel_values, embed_kwargs)`` per family.
+
+    Both families run the result through ``get_input_embeddings`` ->
+    ``language_model(cache=)``; they differ ONLY in per-frame tensor layout:
+
+    * SmolVLM/Idefics3 — the processor expands ``<image>`` into many placeholder
+      tokens (``input_ids`` already matches the vision-token count), and
+      ``pixel_values`` is lifted to ``(1, N, C, H, W)`` with an optional
+      ``pixel_attention_mask``.
+    * LLaVA/FastVLM — the processor emits a single ``-200`` placeholder and
+      ``pixel_values`` stays ``(B, C, H, W)``; the placeholder is expanded into
+      H*W vision tokens inside ``get_input_embeddings`` (via
+      ``config.image_token_index``), so ``input_ids`` is length-1 while
+      ``inputs_embeds`` is length H*W. ``Qwen2Model`` keys sequence length off
+      the embeddings, so the length mismatch is expected and correct.
+    """
+    image_token = _image_marker(processor)
+    inputs = processor(
+        text=[image_token],
+        images=[frame],
+        add_special_tokens=first,
+        return_tensors="mlx",
+    )
+    input_ids = inputs["input_ids"]
+    pixel_values = inputs.get("pixel_values")
+    embed_kwargs: Dict[str, Any] = {}
+    if _is_llava_family(model, processor):
+        # FastVLM: keep pixel_values as (B, C, H, W); no pixel_attention_mask.
+        # Its processor returns numpy pixel_values even with return_tensors="mlx"
+        # (the non-tensor ``image_sizes`` field defeats BatchFeature's mlx cast),
+        # so coerce to mx.array here — the vision tower expects an mlx tensor.
+        if input_ids is not None and not isinstance(input_ids, mx.array):
+            input_ids = mx.array(input_ids)
+        if pixel_values is not None and not isinstance(pixel_values, mx.array):
+            pixel_values = mx.array(pixel_values)
+        return input_ids, pixel_values, embed_kwargs
+    if pixel_values is not None and pixel_values.ndim == 4:
+        # (N, C, H, W) -> (1, N, C, H, W) for the idefics3/smolvlm embed path.
+        pixel_values = pixel_values[None]
+    pam = inputs.get("pixel_attention_mask")
+    if pam is not None:
+        embed_kwargs["pixel_attention_mask"] = pam
+    return input_ids, pixel_values, embed_kwargs
+
+
 def _stop_ids(model: nn.Module, processor: Any) -> set:
     """Collect the token ids that terminate an answer."""
     ids: set = set()
@@ -295,29 +362,14 @@ def _ingest_frame(model, processor, frame, cache) -> dict:
     persistent ``cache`` so the frame's keys/values are appended. Logits are
     discarded. Returns per-frame stats for the demo.
     """
-    image_token = _image_marker(processor)
-
     # Add BOS only if nothing has been ingested yet (i.e. ``open_stream`` was
     # not called). Normally the prefix already carries BOS, so frames append raw
     # image tokens.
     first = int(getattr(cache[0], "offset", 0)) == 0
 
-    inputs = processor(
-        text=[image_token],
-        images=[frame],
-        add_special_tokens=first,
-        return_tensors="mlx",
+    input_ids, pixel_values, embed_kwargs = _build_frame_inputs(
+        model, processor, frame, first=first
     )
-    input_ids = inputs["input_ids"]
-    pixel_values = inputs.get("pixel_values")
-    if pixel_values is not None and pixel_values.ndim == 4:
-        # (N, C, H, W) -> (1, N, C, H, W) for the idefics3/smolvlm embed path.
-        pixel_values = pixel_values[None]
-
-    embed_kwargs = {}
-    pam = inputs.get("pixel_attention_mask")
-    if pam is not None:
-        embed_kwargs["pixel_attention_mask"] = pam
 
     t0 = time.perf_counter()
     emb = model.get_input_embeddings(input_ids, pixel_values, **embed_kwargs)
@@ -335,7 +387,9 @@ def _ingest_frame(model, processor, frame, cache) -> dict:
     t2 = time.perf_counter()
 
     return {
-        "n_tokens": int(input_ids.shape[1]),
+        # Vision-token count = the KV positions actually appended. For FastVLM
+        # ``input_ids`` is a length-1 placeholder, so read the embeddings length.
+        "n_tokens": int(inputs_embeds.shape[1]),
         "encode_ms": (t1 - t0) * 1000.0,
         "lm_ms": (t2 - t1) * 1000.0,
         "kv_bytes": kv_bytes(cache),
@@ -516,24 +570,12 @@ class SegmentAwareSession:
         )
 
     def _make_vision_unit(self, frame: Any, permanent: bool) -> _Unit:
-        image_token = _image_marker(self.processor)
         # BOS only if nothing has been ingested yet (normally the prefix carries
         # it, so frames append raw image tokens).
         first = int(getattr(self.cache[0], "offset", 0)) == 0
-        inputs = self.processor(
-            text=[image_token],
-            images=[frame],
-            add_special_tokens=first,
-            return_tensors="mlx",
+        input_ids, pixel_values, embed_kwargs = _build_frame_inputs(
+            self.model, self.processor, frame, first=first
         )
-        input_ids = inputs["input_ids"]
-        pixel_values = inputs.get("pixel_values")
-        if pixel_values is not None and pixel_values.ndim == 4:
-            pixel_values = pixel_values[None]  # (N,C,H,W) -> (1,N,C,H,W)
-        embed_kwargs = {}
-        pam = inputs.get("pixel_attention_mask")
-        if pam is not None:
-            embed_kwargs["pixel_attention_mask"] = pam
         emb = self.model.get_input_embeddings(input_ids, pixel_values, **embed_kwargs)
         inputs_embeds = emb.inputs_embeds
         mx.eval(inputs_embeds)
@@ -541,7 +583,9 @@ class SegmentAwareSession:
             kind="vision",
             input_ids=input_ids,
             inputs_embeds=inputs_embeds,
-            n_tokens=int(input_ids.shape[1]),
+            # KV positions appended = embeddings length (FastVLM's input_ids is a
+            # length-1 placeholder; the vision tokens live in inputs_embeds).
+            n_tokens=int(inputs_embeds.shape[1]),
             permanent=permanent,
             tag=f"frame{self._n_vision_ingested}",
         )
