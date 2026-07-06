@@ -36,12 +36,14 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import gc
 import json
 import math
 import os
 import random
 import time
 
+import mlx.core as mx
 import numpy as np
 
 # Reuse the PROVEN Phase-2b pieces unchanged (decode, isolation logic, the three
@@ -304,6 +306,11 @@ def evaluate(model, processor, kept, streams, budgets, query_types, out_path, me
             f"[save] {out_path}  streams_done={s_idx + 1}/{len(streams)}  "
             f"({per_stream_s[-1]:.0f}s this stream)"
         )
+        # Free the MLX buffer cache + Python garbage between streams so per-stream
+        # time stays flat over a long run (cached buffers were accumulating and
+        # slowing each successive stream — observed in the 2-stream smoke).
+        mx.clear_cache()
+        gc.collect()
     return rows, per_stream_s
 
 
