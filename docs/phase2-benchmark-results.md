@@ -17,6 +17,8 @@ accuracy oracle, KV grows O(T)). Scoring = deterministic substring match vs grou
 streams × 3 query points × 2 budgets × 3 conditions = **90 evaluations** (small, honest, real).
 
 ## Money table
+Figure: `examples/phase2_money_table.png` (bounded KV / accuracy-vs-budget / flat latency).
+
 | budget | condition | accuracy | KV bytes (min..max) |
 |---|---|---|---|
 | 4 | segment-aware | **15/15 = 100%** | 98,112 KB (flat) |

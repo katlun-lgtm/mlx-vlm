@@ -26,4 +26,8 @@ var/
 .myenv
 .venv
 .codex_tmp/
-.vscodeexamples/real_scenes/
+.vscode
+
+# Phase-2 streaming-video benchmark: real scene images are reproducible via
+# examples/fetch_real_photos.py (Wikimedia CC/PD), so not committed as binaries.
+examples/real_scenes/
