@@ -31,3 +31,11 @@ var/
 # Phase-2 streaming-video benchmark: real scene images are reproducible via
 # examples/fetch_real_photos.py (Wikimedia CC/PD), so not committed as binaries.
 examples/real_scenes/
+
+# Phase-2b: real MOTION clips (CC/PD) are reproducible via
+# examples/fetch_phase2b_clips.py; never commit the video binaries.
+examples/videos/
+examples/videos*/
+examples/videos_phase2b/
+examples/_dbg_*.py
+examples/phase2b_frames/
