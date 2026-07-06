@@ -26,6 +26,8 @@ import json
 import os
 import re
 import sys
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -67,6 +69,30 @@ SUBJECTS: dict[str, tuple[str, list[str]]] = {
     "fountain": ("water fountain", ["fountain"]),
     "flower": ("flower blooming timelapse", ["flower", "blossom", "bloom", "petal"]),
     "candle": ("candle flame", ["candle"]),
+    # --- Phase-2b SCALED pool extension (target ~25-30 passing subjects). ---
+    # All disjoint synonym sets (no token shared with an existing label) so a
+    # substring hit for one subject can never be mis-credited to another when the
+    # recency answer names several. Biased toward frame-filling animal footage
+    # Commons reliably carries; the isolation filter drops whatever the model
+    # can't name, so over-fetching here is cheap insurance for a bigger M.
+    "flamingo": ("flamingo", ["flamingo"]),
+    "owl": ("owl", ["owl"]),
+    "parrot": ("parrot macaw", ["parrot", "macaw"]),
+    "swan": ("swan swimming", ["swan", "cygnet"]),
+    "pig": ("pig piglet farm", ["pig", "piglet"]),
+    "deer": ("deer", ["deer", "stag", "fawn"]),
+    "camel": ("camel", ["camel", "dromedary"]),
+    "koala": ("koala", ["koala"]),
+    "panda": ("giant panda", ["panda"]),
+    "fox": ("fox", ["fox"]),
+    "squirrel": ("squirrel", ["squirrel"]),
+    "frog": ("frog", ["frog", "toad"]),
+    "crab": ("crab", ["crab"]),
+    "shark": ("shark", ["shark"]),
+    "goose": ("goose", ["goose", "geese", "gosling"]),
+    "rooster": ("rooster chicken", ["rooster", "chicken", "hen", "cockerel"]),
+    "fish": ("fish aquarium", ["fish", "goldfish", "koi"]),
+    "train": ("train railway", ["train", "locomotive"]),
 }
 
 MAX_BYTES_DEFAULT = 14 * 1024 * 1024
@@ -75,10 +101,36 @@ SEARCH_HITS = 8  # Commons hits considered per subject
 N_CAND = 2  # candidates downloaded per subject (isolation filter picks winners)
 
 
-def _get(url: str, timeout: int = 90) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": UA})
-    with urllib.request.urlopen(req, timeout=timeout) as r:
-        return r.read()
+# Commons rate-limits bots hard (HTTP 429). Space every request out and back off
+# on 429 so a big scaled fetch actually completes instead of losing half the pool.
+REQUEST_DELAY = 1.5  # min seconds between successive Commons requests
+_last_req = [0.0]
+
+
+def _throttle() -> None:
+    dt = time.time() - _last_req[0]
+    if dt < REQUEST_DELAY:
+        time.sleep(REQUEST_DELAY - dt)
+    _last_req[0] = time.time()
+
+
+def _get(url: str, timeout: int = 90, retries: int = 5) -> bytes:
+    base = 5.0
+    for attempt in range(retries):
+        _throttle()
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": UA})
+            with urllib.request.urlopen(req, timeout=timeout) as r:
+                return r.read()
+        except urllib.error.HTTPError as e:
+            if e.code == 429 and attempt < retries - 1:
+                wait = base * (attempt + 1)
+                print(
+                    f"    [429] backoff {wait:.0f}s (attempt {attempt + 1}/{retries})"
+                )
+                time.sleep(wait)
+                continue
+            raise
 
 
 def api(params: dict) -> dict:
@@ -197,11 +249,26 @@ def main() -> None:
     if limit:
         items = items[:limit]
 
+    mpath = os.path.join(OUT, "manifest.json")
+
+    # RESUME: keep any already-downloaded subject (file still on disk) from a
+    # prior manifest and re-fetch ONLY the missing ones. This makes a 429-throttled
+    # scaled fetch recoverable — just run it again and it tops up the gaps without
+    # re-hammering Commons for clips you already have. Pass --refresh to ignore.
+    existing: dict[str, list[dict]] = {}
+    if "--refresh" not in flags and os.path.exists(mpath):
+        for rec in json.load(open(mpath)):
+            if os.path.exists(os.path.join(OUT, rec["file"])):
+                existing.setdefault(rec["label"], []).append(rec)
+
     manifest = []
     for label, (query, _syn) in items:
+        if label in existing:
+            manifest.extend(existing[label])
+            print(f"[resume] {label:10s} {len(existing[label])} existing clip(s), skip")
+            continue
         manifest.extend(fetch_subject(label, query, max_bytes))
 
-    mpath = os.path.join(OUT, "manifest.json")
     with open(mpath, "w") as f:
         json.dump(manifest, f, indent=2)
     total = sum(r["size"] for r in manifest)
