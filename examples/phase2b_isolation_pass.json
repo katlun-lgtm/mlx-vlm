@@ -1,0 +1,370 @@
+{
+  "note": "Passing single-subject clips for Phase-2b scaled run. Re-decode these files (videos_phase2b/, gitignored -> reproduce via fetch_phase2b_clips.py) and score WITHOUT re-isolating.",
+  "F": 2,
+  "iso_query": "Describe what you see in this scene. Answer in one short sentence.",
+  "n_subjects": 26,
+  "subjects": [
+    "bear",
+    "candle",
+    "cow",
+    "crab",
+    "duck",
+    "elephant",
+    "fish",
+    "flamingo",
+    "fountain",
+    "giraffe",
+    "goose",
+    "horse",
+    "koala",
+    "lion",
+    "monkey",
+    "owl",
+    "panda",
+    "peacock",
+    "penguin",
+    "rooster",
+    "shark",
+    "squirrel",
+    "swan",
+    "tiger",
+    "train",
+    "waterfall"
+  ],
+  "clips": [
+    {
+      "label": "horse",
+      "file": "horse__0.webm",
+      "synonyms": [
+        "horse",
+        "pony",
+        "stallion",
+        "equine"
+      ],
+      "iso_answer": "A brown horse is eating grass in a pasture.",
+      "commons_title": "File:A Brown Horse of Salem City.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/A_Brown_Horse_of_Salem_City.webm",
+      "license": "CC BY-SA 4.0",
+      "author": "Thamizhpparithi Maari"
+    },
+    {
+      "label": "elephant",
+      "file": "elephant__0.webm",
+      "synonyms": [
+        "elephant"
+      ],
+      "iso_answer": "In this image we can see a person standing on the road. In the background, we can see the fence, elephants, trees and the sky.",
+      "commons_title": "File:Me at the zoo.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Me_at_the_zoo.webm",
+      "license": "CC BY 3.0",
+      "author": "Jawed Karim and Yakov Lapitsky"
+    },
+    {
+      "label": "tiger",
+      "file": "tiger__0.webm",
+      "synonyms": [
+        "tiger"
+      ],
+      "iso_answer": "A tiger is walking behind a fence.",
+      "commons_title": "File:Siberian tiger (Panthera tigris altaica) pacing around.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Siberian_tiger_%28Panthera_tigris_altaica%29_pacing_around.webm",
+      "license": "CC0",
+      "author": "Uusijani"
+    },
+    {
+      "label": "lion",
+      "file": "lion__0.webm",
+      "synonyms": [
+        "lion"
+      ],
+      "iso_answer": "A lion is drinking from the ground.",
+      "commons_title": "File:Lion (Panthera leo) sniffing at the ground.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Lion_%28Panthera_leo%29_sniffing_at_the_ground.webm",
+      "license": "CC BY-SA 2.0",
+      "author": "Bernard DUPONT"
+    },
+    {
+      "label": "bear",
+      "file": "bear__0.ogv",
+      "synonyms": [
+        "bear"
+      ],
+      "iso_answer": "In this image we can see two polar bears. At the bottom of the image there is snow.",
+      "commons_title": "File:Cub polar bear is nursing 2.ogv",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Cub_polar_bear_is_nursing_2.ogv",
+      "license": "CC BY-SA 3.0",
+      "author": "Brocken Inaglory"
+    },
+    {
+      "label": "monkey",
+      "file": "monkey__0.webm",
+      "synonyms": [
+        "monkey",
+        "macaque",
+        "ape",
+        "primate"
+      ],
+      "iso_answer": "Two monkeys are sitting on the steps of a temple.",
+      "commons_title": "File:Rhesus macaque (Macaca mulatta) eating an ice cream.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/3/36/Rhesus_macaque_%28Macaca_mulatta%29_eating_an_ice_cream.webm",
+      "license": "CC BY 3.0",
+      "author": "Yan Mag Ryche"
+    },
+    {
+      "label": "giraffe",
+      "file": "giraffe__0.ogv",
+      "synonyms": [
+        "giraffe"
+      ],
+      "iso_answer": "Giraffes are standing in an enclosure.",
+      "commons_title": "File:\u4eac\u90fd\u5e02\u52d5\u7269\u5712 - \u30ad\u30ea\u30f3 - \u30d3\u30c7\u30aa.ogv",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/3/30/%E4%BA%AC%E9%83%BD%E5%B8%82%E5%8B%95%E7%89%A9%E5%9C%92_-_%E3%82%AD%E3%83%AA%E3%83%B3_-_%E3%83%93%E3%83%87%E3%82%AA.ogv",
+      "license": "CC BY-SA 4.0",
+      "author": "Yanajin33"
+    },
+    {
+      "label": "penguin",
+      "file": "penguin__1.ogv",
+      "synonyms": [
+        "penguin"
+      ],
+      "iso_answer": "A few penguins are on the snow.",
+      "commons_title": "File:Penguin Ross Sea 10.ogv",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/f/fe/Penguin_Ross_Sea_10.ogv",
+      "license": "CC BY-SA 4.0",
+      "author": "Francisco Ardini/PNRA"
+    },
+    {
+      "label": "peacock",
+      "file": "peacock__0.ogv",
+      "synonyms": [
+        "peacock",
+        "peafowl"
+      ],
+      "iso_answer": "In this image we can see a peacock and a bird on the ground. In the background, we can see a group of people standing on the bridge and some are holding cameras in their hands.",
+      "commons_title": "File:Peafowl Display.ogv",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Peafowl_Display.ogv",
+      "license": "CC BY-SA 4.0",
+      "author": "Unconventional2"
+    },
+    {
+      "label": "duck",
+      "file": "duck__0.ogv",
+      "synonyms": [
+        "duck",
+        "ducks",
+        "duckling"
+      ],
+      "iso_answer": "3 ducks in the water.",
+      "commons_title": "File:Mallards pond 2009.ogv",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Mallards_pond_2009.ogv",
+      "license": "CC BY-SA 3.0",
+      "author": "Nesnad"
+    },
+    {
+      "label": "cow",
+      "file": "cow__1.webm",
+      "synonyms": [
+        "cow",
+        "cattle",
+        "calf"
+      ],
+      "iso_answer": "In this image we can see some cows standing on the ground. In the background, we can see some trees, plants and sky.",
+      "commons_title": "File:Jersey dairy cattle nearbieihokkaido-2022-08-11.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Jersey_dairy_cattle_nearbieihokkaido-2022-08-11.webm",
+      "license": "CC BY 4.0",
+      "author": "Nesnad"
+    },
+    {
+      "label": "waterfall",
+      "file": "waterfall__0.webm",
+      "synonyms": [
+        "waterfall",
+        "falls",
+        "cascade"
+      ],
+      "iso_answer": "A beautiful, tall, cascading waterfall in a lush, green jungle.",
+      "commons_title": "File:Side view video of Kawaida Waterfall cascading, Cianda, Kiambu County.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Side_view_video_of_Kawaida_Waterfall_cascading%2C_Cianda%2C_Kiambu_County.webm",
+      "license": "CC BY 4.0",
+      "author": "Lebu Ayiga"
+    },
+    {
+      "label": "fountain",
+      "file": "fountain__0.ogg",
+      "synonyms": [
+        "fountain"
+      ],
+      "iso_answer": "In this image we can see a water fountain. In the background we can see trees, vehicles, wall and sky.",
+      "commons_title": "File:Rome drinking fountain video.ogg",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Rome_drinking_fountain_video.ogg",
+      "license": "CC BY-SA 4.0",
+      "author": "Vcohen"
+    },
+    {
+      "label": "candle",
+      "file": "candle__0.webm",
+      "synonyms": [
+        "candle"
+      ],
+      "iso_answer": "In this image we can see a person's hand holding a candle.",
+      "commons_title": "File:Visible light spectrum of a candle flame.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Visible_light_spectrum_of_a_candle_flame.webm",
+      "license": "CC BY-SA 4.0",
+      "author": "Drkirstyross"
+    },
+    {
+      "label": "flamingo",
+      "file": "flamingo__0.webm",
+      "synonyms": [
+        "flamingo"
+      ],
+      "iso_answer": "A bunch of flamingos in a pool on a sunny day.",
+      "commons_title": "File:Caribbean Flamingo vocalization.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Caribbean_Flamingo_vocalization.webm",
+      "license": "CC BY-SA 4.0",
+      "author": "Whoisjohngalt"
+    },
+    {
+      "label": "owl",
+      "file": "owl__1.webm",
+      "synonyms": [
+        "owl"
+      ],
+      "iso_answer": "Two owls are perched on a branch of a tree.",
+      "commons_title": "File:Shoco of Aruba (Athene cunicularia arubensis).webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Shoco_of_Aruba_%28Athene_cunicularia_arubensis%29.webm",
+      "license": "CC0",
+      "author": "Ginelly.Q"
+    },
+    {
+      "label": "swan",
+      "file": "swan__0.webm",
+      "synonyms": [
+        "swan",
+        "cygnet"
+      ],
+      "iso_answer": "In this image we can see two swans in the water. In the background we can see the grass.",
+      "commons_title": "File:Trumpeter swan family.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Trumpeter_swan_family.webm",
+      "license": "CC BY 2.0",
+      "author": "Lorie Shaull"
+    },
+    {
+      "label": "koala",
+      "file": "koala__0.webm",
+      "synonyms": [
+        "koala"
+      ],
+      "iso_answer": "In this image we can see two koalas on the tree. In the background, we can see the wall and some objects.",
+      "commons_title": "File:See a Koala scratch, yawn and sleep.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/See_a_Koala_scratch%2C_yawn_and_sleep.webm",
+      "license": "CC BY-SA 4.0",
+      "author": "Paolo Leone: https://www.youtube.com/channel/UCFRQrtHw36NNpX1oXpHMfRw"
+    },
+    {
+      "label": "panda",
+      "file": "panda__1.webm",
+      "synonyms": [
+        "panda"
+      ],
+      "iso_answer": "A panda is eating bamboo behind a fence.",
+      "commons_title": "File:Berlin zoologisk hage 2026-04-07 mov11.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/d/db/Berlin_zoologisk_hage_2026-04-07_mov11.webm",
+      "license": "CC0",
+      "author": "LarsMueller"
+    },
+    {
+      "label": "squirrel",
+      "file": "squirrel__0.webm",
+      "synonyms": [
+        "squirrel"
+      ],
+      "iso_answer": "A squirrel on a rock.",
+      "commons_title": "File:Golden-mantled Ground Squirrel. Spermophilus lateralis. Sciuridae video.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Golden-mantled_Ground_Squirrel._Spermophilus_lateralis._Sciuridae_video.webm",
+      "license": "CC BY 2.0",
+      "author": "https://www.flickr.com/photos/gails_pictures/"
+    },
+    {
+      "label": "crab",
+      "file": "crab__0.ogv",
+      "synonyms": [
+        "crab"
+      ],
+      "iso_answer": "In this image we can see a crab on the ground.",
+      "commons_title": "File:Carcinus maenas walking on land.ogv",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Carcinus_maenas_walking_on_land.ogv",
+      "license": "CC0",
+      "author": "Arthro"
+    },
+    {
+      "label": "shark",
+      "file": "shark__0.webm",
+      "synonyms": [
+        "shark"
+      ],
+      "iso_answer": "A school of sharks swimming in the ocean.",
+      "commons_title": "File:Scalloped hammerhead-tokyosealifepark-2019-1-8.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Scalloped_hammerhead-tokyosealifepark-2019-1-8.webm",
+      "license": "CC BY 4.0",
+      "author": "Nesnad"
+    },
+    {
+      "label": "goose",
+      "file": "goose__0.webm",
+      "synonyms": [
+        "goose",
+        "geese",
+        "gosling"
+      ],
+      "iso_answer": "Four geese are walking in the street with a bush and brick wall behind them.",
+      "commons_title": "File:Canada goose family.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Canada_goose_family.webm",
+      "license": "CC0",
+      "author": "Packer1028"
+    },
+    {
+      "label": "rooster",
+      "file": "rooster__0.mpg",
+      "synonyms": [
+        "rooster",
+        "chicken",
+        "hen",
+        "cockerel"
+      ],
+      "iso_answer": "A rooster is standing on the ground next to some plants.",
+      "commons_title": "File:Rooster in viet nam walking nervously..mpg",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/c/c6/Rooster_in_viet_nam_walking_nervously..mpg",
+      "license": "CC BY-SA 4.0",
+      "author": "NikkyPA1"
+    },
+    {
+      "label": "fish",
+      "file": "fish__0.webm",
+      "synonyms": [
+        "fish",
+        "goldfish",
+        "koi"
+      ],
+      "iso_answer": "A fish tank has a lot of plants and rocks inside it.",
+      "commons_title": "File:Aqu\u00e1rio com plantas aqu\u00e1ticas.webm",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/9/95/Aqu%C3%A1rio_com_plantas_aqu%C3%A1ticas.webm",
+      "license": "CC BY-SA 4.0",
+      "author": "Lucas Joahay"
+    },
+    {
+      "label": "train",
+      "file": "train__0.mpg",
+      "synonyms": [
+        "train",
+        "locomotive"
+      ],
+      "iso_answer": "A train is parked on the train tracks in the station.",
+      "commons_title": "File:Train leaving from Bussigny.mpg",
+      "commons_url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Train_leaving_from_Bussigny.mpg",
+      "license": "CC BY-SA 4.0",
+      "author": "LKorhonen"
+    }
+  ]
+}
