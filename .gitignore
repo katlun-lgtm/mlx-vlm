@@ -26,4 +26,4 @@ var/
 .myenv
 .venv
 .codex_tmp/
-.vscode
+.vscodeexamples/real_scenes/
